@@ -1,10 +1,23 @@
 import random
 
 class Card:
-    
-    numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
-    mark = ['♥', '♠', '♣', '♦']
 
+    mark = ['♥', '♠', '♣', '♦']
+    numbers = ['A', '2', '3', '4', '5', '6', '7', '8', '9', '10', 'J', 'Q', 'K']
+
+    @staticmethod
+    def card_value(card):
+        num = card[1:]
+        if num in 'J':
+            return 11
+        elif num in 'Q':
+            return 12
+        elif num  in 'K':
+            return 13
+        elif num in 'A':
+            return 1
+        else:
+            return int(num)
 
 def draw_card(deck):
     rand_card = random.randint(0, len(deck) - 1)
@@ -43,5 +56,8 @@ while True:
 
 player_hand.extend(sharing_hand)
 dealer_hand.extend(sharing_hand)
-print(player_hand)
-print(dealer_hand)
+
+checkhand_player = sorted(player_hand,key=lambda card: card[1])
+print(checkhand_player)
+checkhand_dealer = sorted(dealer_hand,key=lambda card: card[1])
+print(checkhand_dealer)
